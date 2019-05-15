@@ -1,12 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[14]:
 
 
 
 import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 from PIL import ImageDraw
 import PIL
 import tkinter as tk
@@ -14,7 +10,6 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.backend import clear_session
 
 
-# In[23]:
 
 
 
@@ -33,9 +28,9 @@ def paint(event):
 def display():
     im = image1.convert('L')
     newImage = im.resize((28, 28), PIL.Image.BILINEAR)  
-    graph = np.array(newImage.getdata()).reshape(28,28)
-    plt.imshow(graph, cmap='gray')
-    plt.show()
+    # graph = np.array(newImage.getdata()).reshape(28,28)
+    # plt.imshow(graph, cmap='gray')
+    newImage.show()
 
 
 def CNN():
@@ -52,7 +47,6 @@ def CNN():
     test = np.array(test)
     prediction = cnn.predict(test)
     res = prediction[0].argsort()[-1:][::-1] #return the index that has the highest probability 
-#     print(res)
     clear_session()
     del cnn
     
@@ -69,7 +63,7 @@ def reset():
 
 
 root = tk.Tk()
-
+root.title('Handwritten Digits Recognition')
 # create a canvas to draw on
 cv = tk.Canvas(root, width=width, height=height, bg='black')
 
@@ -84,9 +78,9 @@ value.set("Draw a number")
 label=tk.Label(root,textvariable=value)
 
 #create buttons 
-button1=tk.Button(text="cnn",command=CNN)
-button2=tk.Button(text="display",command=display)
-button3=tk.Button(text="reset",command=reset)
+button1=tk.Button(text="CNN Model",command=CNN)
+button2=tk.Button(text="Display",command=display)
+button3=tk.Button(text="Reset",command=reset)
 
 cv.pack()
 cv.bind("<B1-Motion>", paint)
