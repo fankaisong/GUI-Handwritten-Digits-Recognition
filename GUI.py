@@ -47,7 +47,7 @@ def CNN():
     clear_session()
     del cnn
     
-    value.set("prediciton is "+ str(res[0]))
+    value.set("The prediciton: "+ str(res[0]))
     
     
 def reset():
@@ -55,6 +55,7 @@ def reset():
     i = PIL.Image.new("RGB", (width, height),'black')
     image1.paste(i)
     
+    value.set("Reset is done")
     
     
 
