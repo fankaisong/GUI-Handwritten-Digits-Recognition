@@ -39,8 +39,9 @@ def CNN():
     # BILINEAR     # linear interpolation in a 2x2 environment
     # BICUBIC      # cubic spline interpolation in a 4x4 environment
     # ANTIALIAS    # best down-sizing filter
-    x = np.array(newImage.getdata()).reshape(28,28,1)
-    test.append(x)
+
+    #normalize the pixel values from 0-1
+    x = np.array(newImage.getdata()).reshape(28,28,1)/255
     test = np.array(test)
     prediction = cnn.predict(test)
     res = prediction[0].argsort()[-1:][::-1] #return the index that has the highest probability 
