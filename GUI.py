@@ -42,6 +42,7 @@ def CNN():
 
     #normalize the pixel values from 0-1
     x = np.array(newImage.getdata()).reshape(28,28,1)/255
+    test.append(x)
     test = np.array(test)
     prediction = cnn.predict(test)
     res = prediction[0].argsort()[-1:][::-1] #return the index that has the highest probability 
